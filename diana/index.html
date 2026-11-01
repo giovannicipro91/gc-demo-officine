@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Diana Marmitte Teverola</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: fascia demo, hero in acciaio con striscia "colore di tempra" del titanio, blocchi impilati */
+:root{
+  --bg:#eef0f2; --surface:#ffffff; --ink:#15181c; --muted:#59616b; --line:#d6dbe0;
+  --accent:#4352c9; --accent-ink:#ffffff; --steel:#22272e; --steel-ink:#eef0f2; --ok:#2c7a4b;
+  --heat:linear-gradient(90deg,#b98b3e 0%,#a5623a 22%,#7a3f8e 48%,#3f4fc4 72%,#6d8fd6 100%);
+  --display:"Saira Condensed","Arial Narrow",Impact,sans-serif;
+  --body:"Barlow","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111418; --surface:#1a1e24; --ink:#e8ebef; --muted:#9aa3ad; --line:#2c323a;
+  --accent:#7b88f0; --accent-ink:#111418; --steel:#0a0c0f; --steel-ink:#e8ebef; --ok:#5cbf86; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111418; --surface:#1a1e24; --ink:#e8ebef; --muted:#9aa3ad; --line:#2c323a;
+  --accent:#7b88f0; --accent-ink:#111418; --steel:#0a0c0f; --steel-ink:#e8ebef; --ok:#5cbf86; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.demo{background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:600}
+.demo .wrap{padding-block:8px}
+.hero{background:var(--steel);color:var(--steel-ink)}
+.hero .wrap{padding-block:28px 30px;display:grid;gap:14px}
+.heat{height:10px;background:var(--heat)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(42px,11vw,72px);line-height:.95;margin:0;text-transform:uppercase;text-wrap:balance}
+h1 span{display:block;font-size:.5em;font-weight:600;letter-spacing:.04em;opacity:.8}
+.hero p{margin:0;max-width:52ch;font-size:17px}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:6px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:var(--body)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn:focus-visible,input:focus-visible,select:focus-visible,.chip:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+section{padding-block:32px}
+h2{font-family:var(--display);font-weight:700;font-size:34px;line-height:1;margin:0 0 6px;text-transform:uppercase}
+.lead{color:var(--muted);margin:0 0 18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+.steps{display:grid;gap:16px}
+.step{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start}
+.step>b{width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-family:var(--display);font-size:18px}
+.step>div{min-width:0;display:grid;gap:8px}
+.step h3{margin:4px 0 0;font-size:17px}
+.drop{display:grid;place-items:center;gap:6px;border:2px dashed var(--line);border-radius:8px;padding:18px;text-align:center;color:var(--muted);cursor:pointer;background:var(--bg)}
+.drop input{position:absolute;opacity:0;width:1px;height:1px}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap}
+.thumbs img{width:76px;height:76px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0}
+.chip span{display:inline-block;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:var(--bg);cursor:pointer;font-size:15px}
+.chip input:checked+span{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fields label{display:grid;gap:4px;font-size:14px;font-weight:600;min-width:0}
+input,select{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);width:100%}
+.mono{font-family:var(--mono);text-transform:uppercase}
+.msg{background:var(--bg);border:1px solid var(--line);border-radius:10px 10px 10px 2px;padding:12px 14px;font-size:15px;white-space:pre-wrap;word-break:break-word}
+.note{font-size:13px;color:var(--muted);margin:0}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.job{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.ba{display:grid;grid-template-columns:1fr 1fr}
+.ba canvas{width:100%;aspect-ratio:1/1;display:block;max-width:100%}
+.ba div{position:relative}
+.ba em{position:absolute;left:8px;top:8px;font-style:normal;font-family:var(--mono);font-size:11px;font-weight:700;background:rgba(0,0,0,.6);color:#fff;padding:2px 6px;border-radius:3px}
+.job p{margin:0;padding:10px 12px;font-size:15px}
+.job small{color:var(--muted);display:block}
+.list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.list div{background:var(--surface);padding:14px}
+.list b{display:block}
+.list span{color:var(--muted);font-size:14px}
+.ex{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--muted);color:var(--muted);padding:1px 6px;border-radius:3px;margin-left:6px;vertical-align:middle}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{padding-block:20px}
+@media (max-width:460px){.fields{grid-template-columns:1fr}}
+</style>
+
+<div class="demo"><div class="wrap">Anteprima dimostrativa preparata da GC Siti Web · non è il sito ufficiale · 353 329 4179</div></div>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Marmitte e scarichi · Teverola (CE)</span>
+  <h1>Diana Marco Vincenzo<span>Marmitte · Catalizzatori · FAP</span></h1>
+  <p>Marmitta rumorosa, scarico forato o spia del FAP accesa? Mandaci una foto e ti diciamo subito cosa serve e quanto costa.</p>
+  <div class="actions">
+    <a class="btn btn-primary" href="#preventivo">Preventivo con foto</a>
+    <a class="btn btn-ghost" href="#dove">Dove siamo</a>
+  </div>
+</div></header>
+<div class="heat" aria-hidden="true"></div>
+
+<main>
+<section id="preventivo"><div class="wrap">
+  <h2>Preventivo in 3 passi</h2>
+  <p class="lead">Niente viaggi a vuoto: prima vediamo il problema, poi fissiamo l'appuntamento.</p>
+  <div class="card steps">
+    <div class="step"><b>1</b><div>
+      <h3>Scatta una foto dello scarico</h3>
+      <label class="drop" for="photo"><input type="file" id="photo" accept="image/*" multiple>
+        <strong>Tocca per scegliere le foto</strong><span class="note">Va bene anche una foto sotto l'auto col telefono</span></label>
+      <div class="thumbs" id="thumbs"></div>
+    </div></div>
+    <div class="step"><b>2</b><div>
+      <h3>Qual è il problema?</h3>
+      <div class="chips" id="probs">
+        <label class="chip"><input type="checkbox" value="Rumore forte" checked><span>Rumore forte</span></label>
+        <label class="chip"><input type="checkbox" value="Scarico forato"><span>Scarico forato</span></label>
+        <label class="chip"><input type="checkbox" value="Spia FAP/DPF accesa"><span>Spia FAP accesa</span></label>
+        <label class="chip"><input type="checkbox" value="Fumo dallo scarico"><span>Fumo</span></label>
+        <label class="chip"><input type="checkbox" value="Pre-revisione emissioni"><span>Pre-revisione</span></label>
+        <label class="chip"><input type="checkbox" value="Scarico sportivo"><span>Scarico sportivo</span></label>
+      </div>
+    </div></div>
+    <div class="step"><b>3</b><div>
+      <h3>Dicci che auto hai</h3>
+      <div class="fields">
+        <label>Modello<input id="car" value="Fiat Punto 1.3 Multijet"></label>
+        <label>Targa<input id="plate" class="mono" value="EF527GT" maxlength="8"></label>
+      </div>
+    </div></div>
+    <div style="display:grid;gap:8px">
+      <span class="note">Il messaggio che arriverà su WhatsApp all'officina:</span>
+      <div class="msg" id="msg" aria-live="polite"></div>
+      <button class="btn btn-primary" type="button" id="send">Invia su WhatsApp</button>
+      <p class="note" id="sendNote">Nella versione reale il tasto apre WhatsApp con foto e testo già pronti verso il numero dell'officina.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Lavori fatti</h2>
+  <p class="lead">Ogni intervento con la foto di prima e di dopo. Qui andranno le foto vere dell'officina.</p>
+  <div class="gallery">
+    <div class="job"><div class="ba"><div><canvas data-kind="rust"></canvas><em>PRIMA</em></div><div><canvas data-kind="new"></canvas><em>DOPO</em></div></div><p><b>Silenziatore posteriore</b><span class="ex">Esempio</span><small>Sostituzione completa · 1 ora</small></p></div>
+    <div class="job"><div class="ba"><div><canvas data-kind="hole"></canvas><em>PRIMA</em></div><div><canvas data-kind="weld"></canvas><em>DOPO</em></div></div><p><b>Tubo forato</b><span class="ex">Esempio</span><small>Saldatura su misura · 40 minuti</small></p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Cosa facciamo</h2>
+  <div class="list" style="margin-top:14px">
+    <div><b>Marmitte e silenziatori</b><span>Sostituzione e riparazione</span></div>
+    <div><b>Saldature</b><span>Tubi e staffe su misura</span></div>
+    <div><b>Catalizzatori</b><span>Controllo e sostituzione</span></div>
+    <div><b>FAP / DPF</b><span>Diagnosi e pulizia</span></div>
+    <div><b>Pre-revisione</b><span>Controllo emissioni prima del collaudo</span></div>
+    <div><b>Scarichi sportivi</b><span>Montaggio di terminali omologati</span></div>
+  </div>
+</div></section>
+
+<section id="dove"><div class="wrap" style="display:grid;gap:6px">
+  <h2>Dove siamo</h2>
+  <p style="margin:0">Via Provinciale Teverola–Carinaro 23, 81030 Teverola (CE)</p>
+  <p class="note">Telefono e orari: da inserire con il titolare</p>
+  <div class="actions"><a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Via+Provinciale+Teverola+Carinaro+23+Teverola" target="_blank" rel="noopener">Apri su Google Maps</a></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">Diana Marco Vincenzo · Teverola (CE) · Demo realizzata da GC Siti Web</div></footer>
+
+<script>
+(function(){
+  const msg=document.getElementById('msg');let nPhotos=0;
+  function build(){
+    const probs=[...document.querySelectorAll('#probs input:checked')].map(i=>i.value);
+    const car=document.getElementById('car').value.trim()||'—';
+    const plate=document.getElementById('plate').value.trim().toUpperCase()||'—';
+    msg.textContent='Ciao, vorrei un preventivo.\nAuto: '+car+'\nTarga: '+plate+'\nProblema: '+(probs.join(', ')||'da valutare')+(nPhotos?'\nTi mando '+nPhotos+(nPhotos===1?' foto':' foto')+'.':'');
+  }
+  document.querySelectorAll('#probs input,#car,#plate').forEach(el=>el.addEventListener('input',build));
+  document.getElementById('photo').addEventListener('change',e=>{
+    const t=document.getElementById('thumbs');t.innerHTML='';
+    const files=[...e.target.files].slice(0,6);nPhotos=files.length;
+    files.forEach(f=>{const r=new FileReader();r.onload=()=>{const i=new Image();i.src=r.result;i.alt='Foto caricata';t.appendChild(i)};r.readAsDataURL(f)});
+    build();
+  });
+  document.getElementById('send').onclick=()=>{document.getElementById('sendNote').innerHTML='<b>Demo:</b> qui si aprirebbe WhatsApp con il messaggio qui sopra e le foto allegate.';};
+  build();
+
+  // Illustrazioni prima/dopo disegnate su canvas
+  document.querySelectorAll('canvas[data-kind]').forEach(c=>{
+    const W=200,H=200;c.width=W;c.height=H;const x=c.getContext('2d');const k=c.dataset.kind;
+    const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#2a2d31');g.addColorStop(1,'#16181b');x.fillStyle=g;x.fillRect(0,0,W,H);
+    const rust=k==='rust'||k==='hole';
+    const pg=x.createLinearGradient(0,70,0,130);
+    if(rust){pg.addColorStop(0,'#8a5a34');pg.addColorStop(.5,'#6b3f22');pg.addColorStop(1,'#3e2414');}
+    else{pg.addColorStop(0,'#d7dce2');pg.addColorStop(.45,'#9aa3ad');pg.addColorStop(1,'#4b525a');}
+    x.fillStyle=pg;x.fillRect(-10,82,W+20,36);
+    if(k==='rust'||k==='new'){x.fillStyle=pg;x.beginPath();x.roundRect(60,58,90,84,14);x.fill();}
+    if(rust){let s=7;for(let i=0;i<160;i++){s=(s*9301+49297)%233280;const px=s/233280*W;s=(s*9301+49297)%233280;const py=60+s/233280*84;x.fillStyle='rgba(150,80,30,'+(0.25+(i%5)/10)+')';x.fillRect(px,py,3,2);}}
+    if(k==='hole'){x.fillStyle='#0d0e10';x.beginPath();x.ellipse(110,100,14,8,0.3,0,7);x.fill();}
+    if(k==='weld'){x.strokeStyle='#c9a05a';x.lineWidth=3;for(let i=0;i<8;i++){x.beginPath();x.arc(96+i*4,100,5,0,Math.PI*2);x.stroke();}}
+    if(k==='new'){x.fillStyle='rgba(255,255,255,.35)';x.fillRect(64,66,82,6);}
+  });
+})();
+</script>
+

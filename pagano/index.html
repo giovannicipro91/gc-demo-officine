@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Pagano Pneumatici</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: banda demo, hero a fascia scura tipo battistrada, poi blocchi impilati in colonna da telefono */
+:root{
+  --bg:#f4f3f1; --surface:#ffffff; --ink:#18181a; --muted:#5d5b58; --line:#dedbd6;
+  --accent:#e2570f; --accent-ink:#ffffff; --band:#1d1c1b; --band-ink:#f4f3f1; --ok:#2f7d47; --busy:#c9c5bf;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Barlow","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141413; --surface:#1e1d1c; --ink:#efede9; --muted:#a8a49e; --line:#33312e;
+  --accent:#f26a24; --accent-ink:#141413; --band:#0c0c0b; --band-ink:#efede9; --ok:#5fbf7f; --busy:#3a3835; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141413; --surface:#1e1d1c; --ink:#efede9; --muted:#a8a49e; --line:#33312e;
+  --accent:#f26a24; --accent-ink:#141413; --band:#0c0c0b; --band-ink:#efede9; --ok:#5fbf7f; --busy:#3a3835; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.demo{background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:600}
+.demo .wrap{padding-block:8px}
+.hero{background:var(--band);color:var(--band-ink);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:14px;
+  background:repeating-linear-gradient(115deg,var(--accent) 0 14px,transparent 14px 28px);opacity:.9}
+.hero .wrap{padding-block:28px 44px;display:grid;gap:14px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(44px,12vw,76px);line-height:.92;margin:0;letter-spacing:.01em;text-transform:uppercase;text-wrap:balance}
+.hero p{margin:0;max-width:52ch;font-size:17px}
+.alert{display:inline-flex;gap:8px;align-items:center;background:color-mix(in srgb,var(--accent) 22%,transparent);border:1px solid var(--accent);padding:6px 10px;border-radius:4px;font-weight:600;width:fit-content}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border-radius:6px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:var(--body)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.phone{font-family:var(--mono);font-size:15px;opacity:.85}
+section{padding-block:32px}
+h2{font-family:var(--display);font-weight:800;font-size:34px;line-height:1;margin:0 0 6px;text-transform:uppercase}
+.lead{color:var(--muted);margin:0 0 18px}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.services div{background:var(--surface);padding:14px}
+.services b{display:block;font-size:16px}
+.services span{color:var(--muted);font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.day{flex:0 0 auto;min-width:64px;padding:8px 6px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);text-align:center;cursor:pointer;font-family:var(--body)}
+.day small{display:block;font-size:12px;color:var(--muted);text-transform:uppercase}
+.day b{font-family:var(--display);font-size:26px;line-height:1}
+.day[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.day[aria-pressed="true"] small{color:inherit}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;margin-top:14px}
+.slot{padding:10px 0;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--mono);font-size:14px;cursor:pointer}
+.slot:disabled{background:var(--busy);color:var(--muted);text-decoration:line-through;cursor:not-allowed;border-color:transparent}
+.slot[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.fields label{display:grid;gap:4px;font-size:14px;font-weight:600;min-width:0}
+.fields .full{grid-column:1/-1}
+input,select{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);width:100%}
+.mono{font-family:var(--mono);text-transform:uppercase}
+.note{font-size:13px;color:var(--muted);margin:10px 0 0}
+.ok{border-left:4px solid var(--ok);padding:12px 14px;background:color-mix(in srgb,var(--ok) 12%,var(--surface));border-radius:6px;margin-top:14px}
+.label-tag{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+.qr{width:92px;height:92px;background:var(--ink);padding:6px;border-radius:4px}
+.qr canvas{width:100%;height:100%;image-rendering:pixelated;display:block}
+dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0;font-size:15px}
+dt{color:var(--muted)} dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+.tread{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:4px}
+.tread i{display:block;height:100%;background:var(--ok)}
+.ex{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--muted);color:var(--muted);padding:1px 6px;border-radius:3px;margin-left:6px;vertical-align:middle}
+.where{display:grid;gap:6px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{padding-block:20px}
+@media (max-width:460px){.fields{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="demo"><div class="wrap">Anteprima dimostrativa preparata da GC Siti Web · non è il sito ufficiale · 353 329 4179</div></div>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Gommista · Casaluce (CE)</span>
+  <h1>Pagano Pneumatici</h1>
+  <span class="alert">Gomme invernali obbligatorie dal 15 novembre</span>
+  <p>Cambio stagionale, montaggio, equilibratura e riparazione forature. Prenota l'orario dal telefono e salta la fila.</p>
+  <div class="actions">
+    <a class="btn btn-primary" href="#prenota">Prenota il cambio gomme</a>
+    <a class="btn btn-ghost" href="https://wa.me/393201450467" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <span class="phone">Tel. 320 145 0467</span>
+</div></header>
+
+<main>
+<section><div class="wrap">
+  <h2>Servizi</h2>
+  <p class="lead">Tutto quello che serve per le gomme della tua auto, in un'unica sosta.</p>
+  <div class="services">
+    <div><b>Cambio stagionale</b><span>Estive e invernali, smontaggio e montaggio</span></div>
+    <div><b>Equilibratura</b><span>Per evitare vibrazioni al volante</span></div>
+    <div><b>Riparazione forature</b><span>Valutazione sul posto</span></div>
+    <div><b>Gomme nuove e usate</b><span>Preventivo con la misura</span></div>
+    <div><b>Deposito gomme</b><span>Custodia con etichetta QR</span></div>
+    <div><b>Controllo pressione</b><span>Anche senza appuntamento</span></div>
+  </div>
+</div></section>
+
+<section id="prenota"><div class="wrap">
+  <h2>Prenota online</h2>
+  <p class="lead">Scegli giorno e orario. Il gommista riceve subito la richiesta.</p>
+  <form class="card" id="bookForm" novalidate>
+    <div class="days" id="days" role="group" aria-label="Giorno"></div>
+    <div class="slots" id="slots" role="group" aria-label="Orario"></div>
+    <div class="fields">
+      <label>Nome<input id="b-name" autocomplete="name" placeholder="Mario Rossi" required></label>
+      <label>Targa<input id="b-plate" class="mono" placeholder="AB123CD" maxlength="8" required></label>
+      <label>Misura gomme<input id="b-size" class="mono" placeholder="205/55 R16"></label>
+      <label>Servizio<select id="b-service">
+        <option>Cambio stagionale</option><option>Montaggio gomme nuove</option>
+        <option>Equilibratura</option><option>Riparazione foratura</option></select></label>
+      <button class="btn btn-primary full" type="submit">Conferma prenotazione</button>
+    </div>
+    <p class="note">La misura è scritta sul fianco della gomma, per esempio 205/55 R16.</p>
+    <div id="bookOk" hidden></div>
+  </form>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Deposito gomme</h2>
+  <p class="lead">Ogni treno di gomme custodito ha un'etichetta con QR. Basta inquadrarla per sapere di chi è, che misura ha e su quale scaffale si trova.</p>
+  <div class="card">
+    <label class="fields" style="grid-template-columns:1fr auto;align-items:end;margin-top:0">
+      <span style="display:grid;gap:4px;font-weight:600;font-size:14px">Codice etichetta<input id="dep-code" class="mono" value="DEP-0142"></span>
+      <button class="btn btn-primary" type="button" id="dep-btn">Apri scheda</button>
+    </label>
+    <div id="dep-card" style="margin-top:16px"></div>
+  </div>
+</div></section>
+
+<section><div class="wrap where">
+  <h2>Dove siamo</h2>
+  <p style="margin:0">Via Provinciale Teverola–Casaluce, 81030 Casaluce (CE)</p>
+  <p style="margin:0" class="phone">Tel. 320 145 0467</p>
+  <div class="actions"><a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Pagano+Pneumatici+Casaluce" target="_blank" rel="noopener">Apri su Google Maps</a></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">Pagano Pneumatici · Casaluce (CE) · Demo realizzata da GC Siti Web</div></footer>
+
+<script>
+(function(){
+  const days=document.getElementById('days'),slots=document.getElementById('slots');
+  const names=['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+  const times=['08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30'];
+  let selDay=null,selSlot=null;
+  const list=[];let d=new Date();d.setHours(0,0,0,0);
+  while(list.length<6){d=new Date(d.getTime()+864e5);if(d.getDay()!==0)list.push(new Date(d));}
+  function busy(i,j){return ((i*7+j*5)%4===0)||(j<3&&i<2);}
+  function renderSlots(i){
+    slots.innerHTML='';selSlot=null;
+    const sat=list[i].getDay()===6;
+    times.forEach((t,j)=>{
+      if(sat&&j>=8)return;
+      const b=document.createElement('button');b.type='button';b.className='slot';b.textContent=t;
+      b.disabled=busy(i,j);b.setAttribute('aria-pressed','false');
+      b.onclick=()=>{slots.querySelectorAll('.slot').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');selSlot=t;};
+      slots.appendChild(b);
+    });
+  }
+  list.forEach((dt,i)=>{
+    const b=document.createElement('button');b.type='button';b.className='day';
+    b.innerHTML='<small>'+names[dt.getDay()]+'</small><b>'+dt.getDate()+'</b>';
+    b.setAttribute('aria-pressed',i===0?'true':'false');
+    b.onclick=()=>{days.querySelectorAll('.day').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');selDay=i;renderSlots(i);};
+    days.appendChild(b);
+  });
+  selDay=0;renderSlots(0);
+  document.getElementById('bookForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const ok=document.getElementById('bookOk');
+    const name=document.getElementById('b-name').value.trim(),plate=document.getElementById('b-plate').value.trim().toUpperCase();
+    ok.hidden=false;
+    if(!selSlot||!name||!plate){ok.className='note';ok.textContent='Scegli un orario libero e inserisci nome e targa per confermare.';return;}
+    const dt=list[selDay];
+    ok.className='ok';
+    ok.innerHTML='<b>Prenotazione registrata (demo)</b><br>'+names[dt.getDay()]+' '+dt.getDate()+'/'+(dt.getMonth()+1)+' alle '+selSlot+' · '+document.getElementById('b-service').value+' · '+plate.replace(/</g,'')+'<br><span style="font-size:14px">Nella versione reale il gommista riceve una notifica e il cliente un promemoria il giorno prima.</span>';
+  });
+
+  // QR decorativo deterministico
+  function drawQR(canvas,seed){
+    const n=21,ctx=canvas.getContext('2d');canvas.width=n;canvas.height=n;
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,n,n);ctx.fillStyle='#000';
+    let s=0;for(const c of seed)s=(s*31+c.charCodeAt(0))>>>0;
+    for(let y=0;y<n;y++)for(let x=0;x<n;x++){s=(s*1103515245+12345)>>>0;if((s>>16)&1)ctx.fillRect(x,y,1,1);}
+    [[0,0],[n-7,0],[0,n-7]].forEach(([a,b])=>{ctx.fillStyle='#fff';ctx.fillRect(a,b,7,7);ctx.fillStyle='#000';ctx.fillRect(a,b,7,7);ctx.fillStyle='#fff';ctx.fillRect(a+1,b+1,5,5);ctx.fillStyle='#000';ctx.fillRect(a+2,b+2,3,3);});
+  }
+  const samples={
+    'DEP-0142':{targa:'FG482LM',cliente:'M. Esposito',misura:'205/55 R16 91H',marca:'Michelin Alpin 6',stagione:'Invernali',usura:5.8,scaffale:'B3 · ripiano 2',entrata:'12/04/2026'},
+    'DEP-0087':{targa:'EZ119KC',cliente:'A. Russo',misura:'195/65 R15 91T',marca:'Pirelli Cinturato P7',stagione:'Estive',usura:3.1,scaffale:'A1 · ripiano 4',entrata:'28/10/2026'}
+  };
+  function showDep(){
+    const code=document.getElementById('dep-code').value.trim().toUpperCase();
+    const box=document.getElementById('dep-card');
+    const s=samples[code];
+    if(!s){box.innerHTML='<p class="note">Nessuna etichetta con questo codice. Prova DEP-0142 o DEP-0087.</p>';return;}
+    const pct=Math.min(100,Math.round(s.usura/8*100));
+    box.innerHTML='<div class="label-tag"><div class="qr"><canvas id="qrc"></canvas></div><div><b class="mono" style="font-size:18px">'+code+'</b><span class="ex">Esempio</span>'+
+      '<dl style="margin-top:8px"><dt>Targa</dt><dd class="mono">'+s.targa+'</dd><dt>Cliente</dt><dd>'+s.cliente+'</dd><dt>Gomme</dt><dd>'+s.stagione+' · '+s.marca+'</dd><dt>Misura</dt><dd class="mono">'+s.misura+'</dd><dt>Battistrada</dt><dd>'+s.usura.toFixed(1).replace('.',',')+' mm<div class="tread"><i style="width:'+pct+'%"></i></div></dd><dt>Scaffale</dt><dd>'+s.scaffale+'</dd><dt>In deposito dal</dt><dd>'+s.entrata+'</dd></dl></div></div>';
+    drawQR(document.getElementById('qrc'),code);
+  }
+  document.getElementById('dep-btn').onclick=showDep;showDep();
+})();
+</script>
+
